@@ -1,0 +1,8 @@
+{
+  "name": "RebelTHON",
+  "app_id": "a2c20788",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
