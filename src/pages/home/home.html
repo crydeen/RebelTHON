@@ -1,9 +1,50 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title><img src="assets/imgs/rebelthon_secondary.png" /></ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <img src="assets/imgs/rebelthon_logo.png" />
+<ion-content>
+      <ion-card>
+        <ion-card-header>
+          Upcoming Events
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+          <ion-item *ngFor="let post of events">
+          <ion-thumbnail item-start>
+            <!-- <img src="img/thumbnail-totoro.png"> -->
+            <p padding-vertical>May 15<br>12:15pm</p>
+
+          </ion-thumbnail>
+          <!-- <img [src]="post.data.url" /> -->
+          <h2>Event: Event Name</h2>
+          <p>Place: Place Name</p>
+
+          </ion-item>
+        </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Past Events
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+          <ion-item *ngFor="let post of events">
+          <!-- <img [src]="post.data.url" /> -->
+          <ion-thumbnail item-start>
+            <!-- <img src="img/thumbnail-totoro.png"> -->
+            <p padding-vertical>May 15<br>12:15pm</p>
+
+          </ion-thumbnail>
+          <!-- <img [src]="post.data.url" /> -->
+          <h2>Event: Event Name</h2>
+          <p>Place: Place Name</p>
+          </ion-item>
+        </ion-list>
+        </ion-card-content>
+      </ion-card>
+
 </ion-content>
