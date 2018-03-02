@@ -11,17 +11,17 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-          <ion-item *ngFor="let post of events">
+          <ion-item class="no-padding" detail-push *ngFor="let event of events" (click)="openModal({charNum: 0})">
           <ion-thumbnail item-start>
             <!-- <img src="img/thumbnail-totoro.png"> -->
             <p padding-vertical>May 15<br>12:15pm</p>
 
           </ion-thumbnail>
           <!-- <img [src]="post.data.url" /> -->
-          <h2>Event: Event Name</h2>
+          <h3>Event: Event Name</h3>
           <p>Place: Place Name</p>
 
-          </ion-item>
+        </ion-item>
         </ion-list>
         </ion-card-content>
       </ion-card>
@@ -32,7 +32,7 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-          <ion-item *ngFor="let post of events">
+          <ion-item class="no-padding" detail-push *ngFor="let event of events" (click)="openModal({charNum: 0})">
           <!-- <img [src]="post.data.url" /> -->
           <ion-thumbnail item-start>
             <!-- <img src="img/thumbnail-totoro.png"> -->
@@ -40,7 +40,7 @@
 
           </ion-thumbnail>
           <!-- <img [src]="post.data.url" /> -->
-          <h2>Event: Event Name</h2>
+          <h3>Event: Event Name</h3>
           <p>Place: Place Name</p>
           </ion-item>
         </ion-list>

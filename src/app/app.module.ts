@@ -9,6 +9,7 @@ import { PortalPage } from '../pages/portal/portal';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SettingsPage } from '../pages/settings/settings'
+import { EventModalPage } from '../pages/event-modal/event-modal'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     PortalPage,
     HomePage,
+    EventModalPage,
     TabsPage
   ],
   imports: [
@@ -34,6 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     PortalPage,
     HomePage,
+    EventModalPage,
     TabsPage
   ],
   providers: [

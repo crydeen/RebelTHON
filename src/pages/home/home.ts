@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { ModalController } from 'ionic-angular';
+import { EventModalPage } from '../event-modal/event-modal'
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,7 +13,7 @@ export class HomePage {
 
   events: any;
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, public modalCtrl: ModalController) {
     this.events = null;
     this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json())
     .subscribe(
@@ -22,6 +24,12 @@ export class HomePage {
         console.log("Error");
       });
 
+  }
+
+  openModal(characterNum) {
+
+    let modal = this.modalCtrl.create(EventModalPage, characterNum);
+    modal.present();
   }
 
   // incrementDate(date, amount) {
