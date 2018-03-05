@@ -19,20 +19,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+
       <ion-item>
-        <ion-avatar item-start>
-          <img src="{{character.image}}">
-        </ion-avatar>
-        <h2>{{character.name}}</h2>
-        <p>{{character.quote}}</p>
+        <h2>{{event.title}}</h2>
+        <p>{{event.location}}</p><br/>
+        <p>{{event.startDate | date:'MMMM d' }} <span *ngIf="event.startDate == event.endDate"> to {{event.endDate | date:'MMMM d'}}</span></p>
+        <p>{{event.startDate | date:'shortTime'}} to {{event.endDate | date:'shortTime'}}</p>
       </ion-item>
 
-      <ion-item *ngFor="let item of character['items']">
-        {{item.title}}
-        <ion-note item-end>
-          {{item.note}}
-        </ion-note>
+      <ion-item>
+        <h5>Notes</h5>
+        <p>{{event.notes}}</p>
       </ion-item>
-  </ion-list>
+  <br>
+  <div padding-horizontal>
+    <p class="center" *ngIf="status">This Event is Already in Your Calendar!</p>
+    <button *ngIf="!status" ion-button block (click)="addToCalendar()">Add to Calendar</button>
+    <!-- <button ion-button block (click)="checkCalendar()">Check Calendar</button> -->
+  </div>
+
 </ion-content>

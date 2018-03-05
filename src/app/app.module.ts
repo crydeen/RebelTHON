@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Calendar } from '@ionic-native/calendar';
 
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { PortalPage } from '../pages/portal/portal';
@@ -54,6 +55,7 @@ export const firebaseConfig = {
   ],
   providers: [
     StatusBar,
+    Calendar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

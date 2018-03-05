@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { ModalController } from 'ionic-angular';
 import { EventModalPage } from '../event-modal/event-modal'
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -12,25 +13,15 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
-  events: Observable<any>;
+  events: Observable<any[]>;
 
   constructor(public navCtrl: NavController, public http: Http, public angfire: AngularFireDatabase, public modalCtrl: ModalController) {
-    // this.events = null;
     this.events = angfire.list('events').valueChanges();
-    // this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json())
-    // .subscribe(
-    //   data => {
-    //     this.events = data.data.children;
-    // },
-    //   err => {
-    //     console.log("Error");
-    //   });
 
   }
 
-  openModal(characterNum) {
-
-    let modal = this.modalCtrl.create(EventModalPage, characterNum);
+  openModal(eventParam) {
+    let modal = this.modalCtrl.create(EventModalPage, eventParam);
     modal.present();
   }
 

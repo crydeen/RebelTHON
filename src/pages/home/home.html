@@ -11,15 +11,15 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-          <ion-item class="no-padding" detail-push *ngFor="let event of events | async" (click)="openModal({charNum: 0})">
+          <ion-item *ngFor="let event of events | async" class="no-padding" detail-push (click)="openModal({eventParam: event})">
           <ion-thumbnail item-start>
             <!-- <img src="img/thumbnail-totoro.png"> -->
-            <p padding-vertical>{{ event.date }}<br>{{ event.time }}</p>
+            <p padding-vertical>{{ event.startDate | date:'MMMM d' }}<br>{{ event.startDate | date:'shortTime' }}</p>
 
           </ion-thumbnail>
           <!-- <img [src]="post.data.url" /> -->
-          <h3>{{ event.name }}</h3>
-          <p>{{ event.place }}</p>
+          <h3>{{ event.title }}</h3>
+          <p>{{ event.location }}</p>
 
         </ion-item>
         </ion-list>
@@ -32,16 +32,20 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-            <ion-item class="no-padding" detail-push *ngFor="let event of events | async" (click)="openModal({charNum: 0})">
+
+            <ion-item *ngFor="let event of events | async" class="no-padding" detail-push (click)="openModal({eventParam: event})">
+
             <ion-thumbnail item-start>
               <!-- <img src="img/thumbnail-totoro.png"> -->
-              <p padding-vertical>{{ event.date }}<br>{{ event.time }}</p>
+              <p padding-vertical>{{ event.startDate | date:'MMMM d' }}<br>{{ event.startDate | date:'shortTime' }}</p>
 
             </ion-thumbnail>
             <!-- <img [src]="post.data.url" /> -->
-            <h3>{{ event.name }}</h3>
-            <p>{{ event.place }}</p>
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.location }}</p>
+
           </ion-item>
+
         </ion-list>
         </ion-card-content>
       </ion-card>

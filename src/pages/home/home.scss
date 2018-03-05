@@ -2,4 +2,10 @@ page-home {
   .no-padding {
     padding-left: 0;
   }
+  .item-inner {
+    margin-right: -5px;
+  }
+  .no-wrap {
+    white-space: nowrap;
+  }
 }
