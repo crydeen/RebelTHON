@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Http } from '@angular/http';
 import { ModalController } from 'ionic-angular';
 import { EventModalPage } from '../event-modal/event-modal'
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -15,7 +14,7 @@ export class HomePage {
 
   events: Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public http: Http, public angfire: AngularFireDatabase, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public angfire: AngularFireDatabase, public modalCtrl: ModalController) {
     this.events = angfire.list('events').valueChanges();
 
   }

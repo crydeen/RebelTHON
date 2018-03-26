@@ -40,30 +40,24 @@
         324978
       </ion-note>
     </ion-item>
+
     <div padding-horizontal>
       <button ion-button block color="danger"><ion-icon name="copy"></ion-icon>&nbsp;&nbsp;Copy Donor Drive Link</button>
       <button ion-button block color="danger"><ion-icon name="open"></ion-icon>&nbsp;&nbsp;Open Drive on the Web</button>
     </div>
   </ion-list>
+
   <ion-list>
     <ion-list-header>
       Fundraising Summary
     </ion-list-header>
-    <!-- <ion-item>
-      <button ion-button block color="danger">Copy Donor Drive Link to Your Clipboard</button>
-    </ion-item>
-    <ion-item>
-      <button ion-button block color="danger">Open Your Donor Drive</button>
-    </ion-item> -->
-    <!-- <button ion-button block color="danger">Copy Donor Drive Link to Your Clipboard</button>
-    <button ion-button block color="danger">Open Your Donor Drive on the Web</button> -->
+
     <div #frame style="width:100%;overflow:scroll !important;-webkit-overflow-scrolling:touch !important">
       <!-- <iframe src="https://events.dancemarathon.com/index.cfm?fuseaction=donorDrive.participant&participantID=324978" sandbox="allow-forms allow-scripts" class="iframe" scrolling="yes" ></iframe> -->
-      <img src="http://bfapps1.boundlessfundraising.com/badge/cmndm/display/324978/1606">
+      <img [src]="imageUrl" (load)="markAsLoaded()" ng-if="imageLoaded">
+      <!-- <img-loader *ngIf="imageUrl" useImg src="{{imageUrl}}" ></img-loader> -->
+
     </div>
   </ion-list>
-  <!-- <p>For Sharing:</p> -->
-  <!-- <button ion-button block color="danger">Copy Donor Drive Link to Your Clipboard</button>
-  <button ion-button block color="danger">Open Your Donor Drive on the Web</button> -->
 
 </ion-content>
