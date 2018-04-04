@@ -1,13 +1,27 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      <img src="assets/imgs/rebelthon_secondary.png" />
+      <img src="assets/imgs/rebelthon_logo_white.png" />
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list no-border>
+<ion-content padding class="outer-content" *ngIf="isLoggedIn == false">
+  <h3 class="center">It seems you aren't logged in!<br><br>
+  Click on the button below to login so we can show you your dancer portal!</h3>
+  <button ion-button block (click)="login()"><ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Login</button>
+</ion-content>
+
+<ion-content class="outer-content" *ngIf="isLoggedIn == true">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list no-border *ngFor="let detail of profile | async">
 
     <ion-list-header>
       Donor Drive Portal
@@ -17,7 +31,7 @@
       <ion-icon name='contact' item-start></ion-icon>
         Name
       <ion-note item-end>
-        Chase Rydeen
+        {{ detail.name }}
       </ion-note>
     </ion-item>
 
@@ -27,7 +41,7 @@
         Team
       </ion-label>
       <ion-note item-end>
-        Honors College
+        {{ detail.team }}
       </ion-note>
     </ion-item>
 
@@ -37,13 +51,13 @@
         ID
       </ion-label>
       <ion-note item-end>
-        324978
+        {{ detail.userId }}
       </ion-note>
     </ion-item>
 
     <div padding-horizontal>
-      <button ion-button block color="danger"><ion-icon name="copy"></ion-icon>&nbsp;&nbsp;Copy Donor Drive Link</button>
-      <button ion-button block color="danger"><ion-icon name="open"></ion-icon>&nbsp;&nbsp;Open Drive on the Web</button>
+      <button ion-button block (click)="copy(link)"><ion-icon name="copy"></ion-icon>&nbsp;&nbsp;Copy Donor Drive Link</button>
+      <button ion-button block (click)="openWeb(link)"><ion-icon name="open"></ion-icon>&nbsp;&nbsp;Open Drive on the Web</button>
     </div>
   </ion-list>
 

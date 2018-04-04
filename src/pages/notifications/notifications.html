@@ -1,11 +1,60 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      <img src="assets/imgs/rebelthon_secondary.png" />
+      <img src="assets/imgs/rebelthon_logo_white.png" />
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="outer-content">
+  <div padding-horizontal>
+    <button ion-button block (click)="schedule()"><ion-icon name="copy"></ion-icon>&nbsp;&nbsp;Schedule</button>
+  </div>
+  <ion-list>
+  <ion-list-header>
+    Today
+  </ion-list-header>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>13m</p>
+      </ion-thumbnail>
+      <p>Donor Drive Total Going Down</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>20m</p>
+      </ion-thumbnail>
+      <p>Last Day to Sign up To get a T Shirt at the Event and sign up for things</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>28m</p>
+      </ion-thumbnail>
+      <p>Come Hang out at the RebelTHON Table outside Weir Hall!</p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Past 7 Days
+    </ion-list-header>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>6h</p>
+      </ion-thumbnail>
+      <p>Color Teams have been announced! Check Facebook for more info!</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>20h</p>
+      </ion-thumbnail>
+      <p>Location Confirmed! Tad Pad here we come!</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-thumbnail item-end padding-vertical>
+        <p>2d</p>
+      </ion-thumbnail>
+      <p>Get Ready to Boogie, less than 30 days to the event!</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

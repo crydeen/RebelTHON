@@ -5,15 +5,21 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Calendar } from '@ionic-native/calendar';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { Clipboard } from '@ionic-native/clipboard';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { PortalPage } from '../pages/portal/portal';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { SettingsPage } from '../pages/settings/settings'
-import { EventModalPage } from '../pages/event-modal/event-modal'
+import { SettingsPage } from '../pages/settings/settings';
+import { EventModalPage } from '../pages/event-modal/event-modal';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,6 +41,7 @@ export const firebaseConfig = {
     PortalPage,
     HomePage,
     EventModalPage,
+    LoginPage,
     TabsPage
   ],
   imports: [
@@ -43,6 +50,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
     IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -53,12 +62,16 @@ export const firebaseConfig = {
     PortalPage,
     HomePage,
     EventModalPage,
+    LoginPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     Calendar,
     SplashScreen,
+    Clipboard,
+    InAppBrowser,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

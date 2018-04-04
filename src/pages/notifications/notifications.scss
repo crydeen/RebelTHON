@@ -1,3 +1,15 @@
+.md {
+  page-notifications {
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      display: block;
+    }
+  }
+}
 page-notifications {
-
+  ion-thumbnail p {
+    text-align: center;
+  }
 }

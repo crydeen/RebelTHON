@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @Component({
   selector: 'page-notifications',
@@ -7,9 +8,18 @@ import { NavController } from 'ionic-angular';
 })
 export class NotificationsPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private localNotifications: LocalNotifications) {
 
   }
+  schedule() {
+    this.localNotifications.schedule({
+    id: 1,
+    text: 'Disney Hour',
+    at: new Date(new Date().getTime() + 5 * 1000),
+    icon: 'assets/imgs/logo.png'
+  });
+  }
+
+
 
 }

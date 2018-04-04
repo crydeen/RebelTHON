@@ -6,13 +6,47 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title><img src="assets/imgs/rebelthon_secondary.png" /></ion-title>
+  <ion-navbar color="primary">
+    <ion-title><img src="assets/imgs/rebelthon_logo_white.png" /></ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content class="outer-content">
+  <ion-list>
+    <ion-item>
+      <ion-label>Push Notifications</ion-label>
+      <ion-toggle color="#FA8072"></ion-toggle>
+    </ion-item>
+  <ion-item>
+  <ion-label>Use Location</ion-label>
+  <ion-toggle color="#FA8072"></ion-toggle>
+</ion-item>
+<ion-item>
+<ion-label>Only use Wifi</ion-label>
+<ion-toggle color="#FA8072"></ion-toggle>
+</ion-item>
+</ion-list>
+  <ion-list>
+    <ion-list-header>
+      Adjust Text
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="-100" step="10" snaps="true" [(ngModel)]="text">
+        <ion-label range-left class="small-text">a</ion-label>
+        <ion-label range-right>A</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+    <ion-icon name="cloud-upload" color="primary" item-left></ion-icon>
+      <ion-label> Back-up data </ion-label>
+    <ion-toggle color="#FA8072"></ion-toggle>
+  </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button block (click)="about()">About Us</button>
+    <p></p>
+    <button ion-button block (click)="logout()" color="danger">Logout</button>
+  </div>
 
 </ion-content>
