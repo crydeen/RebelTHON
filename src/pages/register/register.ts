@@ -2,7 +2,6 @@ import { Component, trigger, state, style, transition, animate, keyframes } from
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
-import { RegisterPage } from '../register/register';
 import { ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -79,6 +78,9 @@ export class RegisterPage {
   name: any;
   team: any;
   dancer_id: any;
+  user: any;
+  email: any;
+  password: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
 
