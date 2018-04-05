@@ -93,7 +93,6 @@ export class LoginPage {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         console.log(user.email)
-        console.log(this.afAuth.currentUser)
       })
       .catch((error) => {
         console.log(error)
