@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -12,6 +13,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { PortalPage } from '../pages/portal/portal';
@@ -20,6 +22,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { SettingsPage } from '../pages/settings/settings';
 import { EventModalPage } from '../pages/event-modal/event-modal';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,6 +45,7 @@ export const firebaseConfig = {
     HomePage,
     EventModalPage,
     LoginPage,
+    RegisterPage,
     TabsPage
   ],
   imports: [
@@ -52,7 +56,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    IonicImageLoader.forRoot()
+    IonicImageLoader.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,6 +68,7 @@ export const firebaseConfig = {
     HomePage,
     EventModalPage,
     LoginPage,
+    RegisterPage,
     TabsPage
   ],
   providers: [

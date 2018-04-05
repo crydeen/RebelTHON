@@ -1,5 +1,5 @@
 <!--
-  Generated template for the LoginPage page.
+  Generated template for the RegisterPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Register</ion-title>
     <ion-buttons start>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon item-right name="ios-close-outline"></ion-icon>
@@ -19,7 +19,6 @@
 
 
 <ion-content>
-
   <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
 
     <ion-row>
@@ -33,7 +32,7 @@
         <ion-list inset [@bounceInBottom]="formState">
 
           <ion-item>
-            <ion-label><ion-icon name="person"></ion-icon></ion-label>
+            <ion-label><ion-icon name="at"></ion-icon></ion-label>
             <ion-input type="email" placeholder="Email" [(ngModel)]="email" required></ion-input>
           </ion-item>
 
@@ -42,25 +41,34 @@
             <ion-input type="password" placeholder="Password" [(ngModel)]="password" required></ion-input>
           </ion-item>
 
+          <ion-item>
+            <ion-label><ion-icon name="person"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Full Name" [(ngModel)]="name" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><ion-icon name="people"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Team Name" [(ngModel)]="team"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><ion-icon name="finger-print"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Dancer ID" [(ngModel)]="dancer_id"></ion-input>
+          </ion-item>
+
         </ion-list>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button ion-button class="login-button" [@fadeIn]="loginState" (click)=login()>Login</button>
+        <button ion-button class="register-button" [@fadeIn]="loginState" (click)=register()>Register</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        Or
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <a href="#" (click)="register()" class="register-link">Click Here to Register</a>
+        <a href="#" (click)="help()" class="help-link">Help! I don't know some of this!</a>
       </ion-col>
     </ion-row>
 

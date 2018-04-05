@@ -9,6 +9,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
+import { Storage } from '@ionic/storage';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
@@ -33,18 +34,17 @@ export class PortalPage {
   size: any;
   queryObservable: any;
   name_test: any;
+  date: any;
 
-  constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController, private clipboard: Clipboard, private iab: InAppBrowser, public modalCtrl: ModalController, public angfire: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController, private clipboard: Clipboard, private iab: InAppBrowser, public modalCtrl: ModalController, public angfire: AngularFireDatabase, public storage: Storage) {
     this.profile = null;
     this.user = firebase.auth().currentUser;
+    this.date = Date.now();
+    console.log(this.date);
     console.log(this.user);
-    // firebase.database().ref("/users/" + this.user.uid + "/name").on("value", function(snapshot) {
-    //   this.name = snapshot.val();
-    //   });
     if (this.user) {
       console.log(this.user.uid);
       this.isLoggedIn = true;
-      // this.profile = angfire.list('users/' + this.user.uid).valueChanges();
       // firebase.database().ref("/users/" + this.user.uid).on("child_added", function(snapshot) {
       //   if(snapshot.key == "dancer_id") {
       //     this.dancer_id=snapshot.val();
@@ -57,7 +57,8 @@ export class PortalPage {
       //   }
       //   });
       this.profile = angfire.list('users/' + this.user.uid).valueChanges();
-      console.log(this.profile);
+      this.imageUrl = "http://bfapps1.boundlessfundraising.com/badge/cmndm/display/" + window.localStorage.getItem(this.user.uid) + "/1606";
+      console.log(this.imageUrl);
       // this.size = new Subject<string>();
       // this.queryObservable = size.switchMap(size =>
       //   db.list('/users', ref => ref.orderByChild('key').equalTo(this.user.uid)).valueChanges()
@@ -67,7 +68,6 @@ export class PortalPage {
       this.isLoggedIn = false;
     }
     this.imageLoaded = false;
-    this.imageUrl = "http://bfapps1.boundlessfundraising.com/badge/cmndm/display/324978/1606";
     this.http.get("http://bfapps1.boundlessfundraising.com/badge/cmndm/display/324978/1606",{observe: 'response'})
     this.link = "https://events.dancemarathon.com/index.cfm?fuseaction=donorDrive.participant&participantID=324978"
   }

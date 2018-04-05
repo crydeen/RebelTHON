@@ -1,7 +1,7 @@
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -9,17 +9,16 @@ import { AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-
 /**
- * Generated class for the SigninPage page.
+ * Generated class for the RegisterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-register',
+  templateUrl: 'register.html',
 
   animations: [
 
@@ -71,56 +70,59 @@ import * as firebase from 'firebase/app';
     ])
   ]
 })
-export class LoginPage {
+export class RegisterPage {
 
   logoState: any = "in";
   cloudState: any = "in";
   loginState: any = "in";
   formState: any = "in";
-  user: any;
-  email: any;
-  password: any;
-  isLoggedIn: any;
+  name: any;
+  team: any;
+  dancer_id: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-    this.user = firebase.auth().currentUser;
-    if (this.user) {
-      console.log(this.user.uid);
-      this.isLoggedIn = true;
-    }
-    else {
-      this.isLoggedIn = false;
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
+
   }
 
-  login() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
+  closeModal() {
+        this.navCtrl.pop();
+  }
+
+  help () {
+    let alert = this.alertCtrl.create({
+      title: 'Help',
+      subTitle: "Your Team is what you signed up for when you signed up for the Dance Marathon!<br><br> Your Dancer ID can be found on your Donor Drive Page if you go here and log in!<br><br>And don't worry you can change these later if you want to leave them blank now!",
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  register() {
+    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
-        console.log(user.email);
-        let login_alert = this.alertCtrl.create({
+        console.log(user.email)
+        this.user = firebase.auth().currentUser;
+        firebase.database().ref('/users/' + this.user.uid + "/userDetails").set({
+          name: this.name,
+          team: this.team,
+          userId: this.dancer_id
+        })
+        window.localStorage.setItem(this.user.uid, this.dancer_id);
+        let creation_alert = this.alertCtrl.create({
           title: 'Success',
-          subTitle: "You have been logged in!",
+          subTitle: "Your account has been successfully created!",
           buttons: [{
             text:'OK',
             handler: () => {
               this.navCtrl.setRoot(TabsPage);
             }
-        }]
+          }]
         });
-        login_alert.present();
+        creation_alert.present();
       })
       .catch((error) => {
         console.log(error)
       })
-  }
-
-  register() {
-    let modal = this.modalCtrl.create(RegisterPage);
-    modal.present();
-  }
-
-  closeModal() {
-        this.navCtrl.pop();
   }
 
 }

@@ -10,8 +10,9 @@
           Upcoming Events
         </ion-card-header>
         <ion-card-content>
-          <ion-list>
-          <ion-item *ngFor="let event of events | async" class="no-padding" detail-push (click)="openModal({eventParam: event})">
+          <ion-list class="lines">
+            <div *ngFor="let event of events | async">
+          <ion-item class="no-padding" detail-push (click)="openModal({eventParam: event})" *ngIf="event.startDate >= date">
           <ion-thumbnail item-start>
             <!-- <img src="img/thumbnail-totoro.png"> -->
             <p padding-vertical>{{ event.startDate | date:'MMMM d' }}<br>{{ event.startDate | date:'shortTime' }}</p>
@@ -20,8 +21,8 @@
           <!-- <img [src]="post.data.url" /> -->
           <h3>{{ event.title }}</h3>
           <p>{{ event.location }}</p>
-
         </ion-item>
+        </div>
         </ion-list>
         </ion-card-content>
       </ion-card>
@@ -31,9 +32,9 @@
           Past Events
         </ion-card-header>
         <ion-card-content>
-          <ion-list>
-
-            <ion-item *ngFor="let event of events | async" class="no-padding" detail-push (click)="openModal({eventParam: event})">
+          <ion-list class="lines">
+            <div *ngFor="let event of events | async">
+            <ion-item class="no-padding" detail-push (click)="openModal({eventParam: event})" *ngIf="event.startDate < date">
 
             <ion-thumbnail item-start>
               <!-- <img src="img/thumbnail-totoro.png"> -->
@@ -45,7 +46,7 @@
             <p>{{ event.location }}</p>
 
           </ion-item>
-
+        </div>
         </ion-list>
         </ion-card-content>
       </ion-card>

@@ -13,10 +13,11 @@ import 'rxjs/add/operator/map';
 export class HomePage {
 
   events: Observable<any[]>;
+  date: any;
 
   constructor(public navCtrl: NavController, public angfire: AngularFireDatabase, public modalCtrl: ModalController) {
     this.events = angfire.list('events').valueChanges();
-
+    this.date = "2018-03-05T22:30:00-06:00";
   }
 
   openModal(eventParam) {
