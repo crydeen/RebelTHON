@@ -87,7 +87,7 @@ export class RegisterPage {
   }
 
   closeModal() {
-        this.navCtrl.pop();
+    this.navCtrl.pop();
   }
 
   help () {

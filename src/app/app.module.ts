@@ -23,6 +23,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { EventModalPage } from '../pages/event-modal/event-modal';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { LogoutPage } from '../pages/logout/logout';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,6 +47,7 @@ export const firebaseConfig = {
     EventModalPage,
     LoginPage,
     RegisterPage,
+    LogoutPage,
     TabsPage
   ],
   imports: [
@@ -69,6 +71,7 @@ export const firebaseConfig = {
     EventModalPage,
     LoginPage,
     RegisterPage,
+    LogoutPage,
     TabsPage
   ],
   providers: [
