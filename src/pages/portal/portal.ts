@@ -57,7 +57,7 @@ export class PortalPage {
       //   }
       //   });
       this.profile = angfire.list('users/' + this.user.uid).valueChanges();
-      this.imageUrl = "http://bfapps1.boundlessfundraising.com/badge/cmndm/display/" + window.localStorage.getItem(this.user.uid) + "/1606";
+      this.imageUrl = "https://bfapps1.boundlessfundraising.com/badge/cmndm/display/" + window.localStorage.getItem(this.user.uid) + "/1606";
       console.log(this.imageUrl);
       // this.size = new Subject<string>();
       // this.queryObservable = size.switchMap(size =>
