@@ -23,12 +23,21 @@ export class EventModalPage {
   confirmDelete: any;
   status: any;
   admin: any;
+  timezone: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private calendar: Calendar, public alertCtrl: AlertController, public modalCtrl: ModalController) {
     this.event = this.navParams.get('eventParam').eventParam;
     console.log(this.event);
     this.admin = this.navParams.get('admin');
     console.log(this.admin);
+    // console.log(this.event.startDate);
+    // this.dateTest = new Date(this.event.startDate);
+    // console.log(this.dateTest);
+    // this.utcTest = Date.UTC(this.dateTest.getFullYear(),this.dateTest.getMonth(),this.dateTest.getDay(),this.dateTest.getHours(),this.dateTest.getMinutes(),this.dateTest.getSeconds(),this.dateTest.getMilliseconds());
+    // this.localString = this.dateTest.toString();
+    // console.log(this.localString);
+    // this.utcTest2 = Date.UTC(this.dateTest.getFullYear(),this.dateTest.getMonth(),this.dateTest.getDay(),23,this.dateTest.getMinutes(),this.dateTest.getSeconds(),this.dateTest.getMilliseconds());
+    // console.log(this.dateTest.getFullYear() this.dateTest.getMonth());
     this.status = this.checkCalendar();
     // this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate))
     // .then((result) => {
@@ -54,13 +63,17 @@ export class EventModalPage {
   }
 
   addToCalendar() {
-    this.calendar.createEvent(this.event.title , this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate))
+    this.startDate = new Date(this.event.startDate);
+    this.startDate.setHours(this.startDate.getHours()+5);
+    this.endDate = new Date(this.event.endDate);
+    this.endDate.setHours(this.endDate.getHours()+5);
+    this.calendar.createEvent(this.event.title , this.event.location, this.event.notes, this.startDate, this.endDate)
     .then(function(result) {
       console.log(result);
     }, function(err) {
       console.log(err)
     });
-    this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate))
+    this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, this.startDate, this.endDate)
     .then((result) => {
       if(result) {
         this.status = result;
@@ -73,7 +86,11 @@ export class EventModalPage {
   }
 
   public checkCalendar() {
-    this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate))
+    this.startDate = new Date(this.event.startDate);
+    this.startDate.setHours(this.startDate.getHours()+5);
+    this.endDate = new Date(this.event.endDate);
+    this.endDate.setHours(this.endDate.getHours()+5);
+    this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, this.startDate, this.endDate)
     .then((result) => {
       if(result) {
         this.status = result;

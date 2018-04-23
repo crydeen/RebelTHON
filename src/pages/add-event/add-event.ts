@@ -26,8 +26,11 @@ export class AddEventPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.incrementDate = new Date();
-    this.incrementDate.setHours(this.incrementDate.getHours()+1);
-    this.startDate = new Date().toISOString();
+    this.timezone = new Date();
+    this.timezone.setHours(this.timezone.getHours()-5);
+    this.incrementDate.setHours(this.timezone.getHours()+1);
+    this.startDate = this.timezone.toISOString();
+    console.log(this.timezone);
     this.endDate= this.incrementDate.toISOString();
     console.log(this.startDate);
     this.testDate = new Date(this.startDate);

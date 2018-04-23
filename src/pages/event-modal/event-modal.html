@@ -35,17 +35,18 @@
     <p class="center" *ngIf="status">This Event is Already in Your Calendar!</p>
     <button *ngIf="!status" ion-button block (click)="addToCalendar()">Add to Calendar</button>
   </div>
+  <div *ngIf="admin">
   <br>
   <br>
   <hr>
   <p class="center">Admin</p>
   <hr>
   <div padding-horizontal>
-    <button *ngIf="admin" color="primary" ion-button block (click)="updateEvent(event)">Update Event</button>
+    <button color="primary" ion-button block (click)="updateEvent(event)">Update Event</button>
   </div>
   <br>
   <div padding-horizontal>
-    <button *ngIf="admin" color="danger" ion-button block (click)="deleteEvent(event.key)">Delete Event</button>
+    <button color="danger" ion-button block (click)="deleteEvent(event.key)">Delete Event</button>
   </div>
-
+  </div>
 </ion-content>
