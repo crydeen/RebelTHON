@@ -23,6 +23,7 @@ export class AddEventPage {
   notes: any;
   testDate: any;
   key: any;
+  timezone: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.incrementDate = new Date();

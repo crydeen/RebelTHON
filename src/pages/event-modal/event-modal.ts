@@ -24,6 +24,8 @@ export class EventModalPage {
   status: any;
   admin: any;
   timezone: any;
+  startDate: any;
+  endDate: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private calendar: Calendar, public alertCtrl: AlertController, public modalCtrl: ModalController) {
     this.event = this.navParams.get('eventParam').eventParam;
