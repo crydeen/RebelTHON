@@ -15,7 +15,7 @@ export class NotificationsPage {
     this.localNotifications.schedule({
     id: 1,
     text: 'Disney Hour',
-    at: new Date(new Date().getTime() + 5 * 1000),
+    at: new Date(new Date().getTime() + 5 * 1000), //Put time you want in to here
     icon: 'assets/imgs/logo.png'
   });
   }

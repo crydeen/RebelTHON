@@ -4,7 +4,6 @@ import { AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { ModalController } from 'ionic-angular';
 
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 /**

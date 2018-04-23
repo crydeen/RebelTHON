@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Calendar } from '@ionic-native/calendar';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { Clipboard } from '@ionic-native/clipboard';
@@ -24,6 +24,9 @@ import { EventModalPage } from '../pages/event-modal/event-modal';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { LogoutPage } from '../pages/logout/logout';
+import { AddEventPage } from '../pages/add-event/add-event';
+import { AboutPage } from '../pages/about/about';
+import { EditEventPage } from '../pages/edit-event/edit-event';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,9 +48,12 @@ export const firebaseConfig = {
     PortalPage,
     HomePage,
     EventModalPage,
+    AddEventPage,
+    EditEventPage,
     LoginPage,
     RegisterPage,
     LogoutPage,
+    AboutPage,
     TabsPage
   ],
   imports: [
@@ -69,9 +75,12 @@ export const firebaseConfig = {
     PortalPage,
     HomePage,
     EventModalPage,
+    AddEventPage,
+    EditEventPage,
     LoginPage,
     RegisterPage,
     LogoutPage,
+    AboutPage,
     TabsPage
   ],
   providers: [

@@ -1,12 +1,9 @@
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { HomePage } from '../home/home';
-import { ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
-import { Observable } from 'rxjs/Observable';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 /**
  * Generated class for the RegisterPage page.

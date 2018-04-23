@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title><img src="assets/imgs/rebelthon_logo_white.png" /></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -15,7 +20,7 @@
           <ion-item class="no-padding" detail-push (click)="openModal({eventParam: event})" *ngIf="event.startDate >= date">
           <ion-thumbnail item-start>
             <!-- <img src="img/thumbnail-totoro.png"> -->
-            <p padding-vertical>{{ event.startDate | date:'MMMM d' }}<br>{{ event.startDate | date:'shortTime' }}</p>
+            <p padding-vertical>{{ event.startDate | date:'MMM d' }}<br>{{ event.startDate | date:'shortTime':'UTC' }}</p>
 
           </ion-thumbnail>
           <!-- <img [src]="post.data.url" /> -->
@@ -38,7 +43,7 @@
 
             <ion-thumbnail item-start>
               <!-- <img src="img/thumbnail-totoro.png"> -->
-              <p padding-vertical>{{ event.startDate | date:'MMMM d' }}<br>{{ event.startDate | date:'shortTime' }}</p>
+              <p padding-vertical>{{ event.startDate | date:'MMM d' }}<br>{{ event.startDate | date:'shortTime':'UTC' }}</p>
 
             </ion-thumbnail>
             <!-- <img [src]="post.data.url" /> -->
