@@ -27,10 +27,23 @@
 <ion-toggle color="#FA8072"></ion-toggle>
 </ion-item>
 </ion-list>
-  <div padding>
-    <button ion-button block (click)="about()">About Us</button>
-    <p></p>
-    <button ion-button block (click)="logout()" color="danger">Logout</button>
+<div padding-horizontal>
+  <button ion-button block (click)="about()">About Us</button>
+  <br><br>
   </div>
+  <div padding-horizontal *ngFor="let detail of profile | async">
+    <ion-list no-lines *ngIf="isLoggedIn == true">
+      <ion-list-header class="center">
+        My Account
+      </ion-list-header>
+        <button ion-button block (click)="accountSettings(detail)" color="primary">Account Settings</button>
+        <br>
+        <button ion-button block (click)="logout()" color="danger">Logout</button>
+        <br><br>
+    </ion-list>
+
+  </div>
+  <br>
+
 
 </ion-content>

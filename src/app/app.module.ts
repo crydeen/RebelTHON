@@ -14,6 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { IonicStorageModule } from '@ionic/storage';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { PortalPage } from '../pages/portal/portal';
@@ -26,6 +27,7 @@ import { RegisterPage } from '../pages/register/register';
 import { LogoutPage } from '../pages/logout/logout';
 import { AddEventPage } from '../pages/add-event/add-event';
 import { AboutPage } from '../pages/about/about';
+import { AccountSettingsPage } from '../pages/account-settings/account-settings';
 import { EditEventPage } from '../pages/edit-event/edit-event';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -54,6 +56,7 @@ export const firebaseConfig = {
     RegisterPage,
     LogoutPage,
     AboutPage,
+    AccountSettingsPage,
     TabsPage
   ],
   imports: [
@@ -81,6 +84,7 @@ export const firebaseConfig = {
     RegisterPage,
     LogoutPage,
     AboutPage,
+    AccountSettingsPage,
     TabsPage
   ],
   providers: [
@@ -90,6 +94,7 @@ export const firebaseConfig = {
     Clipboard,
     InAppBrowser,
     LocalNotifications,
+    EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

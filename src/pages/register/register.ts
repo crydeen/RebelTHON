@@ -104,7 +104,8 @@ export class RegisterPage {
         firebase.database().ref('/users/' + this.user.uid + "/userDetails").set({
           name: this.name,
           team: this.team,
-          userId: this.dancer_id
+          userId: this.dancer_id,
+          isAdmin: false
         })
         window.localStorage.setItem(this.user.uid, this.dancer_id);
         let creation_alert = this.alertCtrl.create({
