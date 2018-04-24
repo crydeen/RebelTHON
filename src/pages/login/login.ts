@@ -111,7 +111,7 @@ export class LoginPage {
         console.log(error)
         let failure_alert = this.alertCtrl.create({
           title: 'Error',
-          subTitle: "Username/Password Incorrect",
+          subTitle: "Email/Password Incorrect",
           buttons: [{
             text:'OK',
             handler: () => {
@@ -126,6 +126,61 @@ export class LoginPage {
   register() {
     let modal = this.modalCtrl.create(RegisterPage);
     modal.present();
+  }
+
+  forgot() {
+    let reset_alert = this.alertCtrl.create({
+      title: 'Success',
+      subTitle: "Your password reset has been sent to your email",
+      buttons: [{
+        text:'OK',
+        handler: () => {
+
+        }
+    }]
+    });
+    let failure_alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: "Email not found!",
+      buttons: [{
+        text:'OK',
+        handler: () => {
+
+        }
+    }]
+    });
+    let prompt = this.alertCtrl.create({
+      title: 'Reset Password',
+      message: "Enter your email address",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Send Reset',
+          handler: data => {
+            console.log(data.email);
+            firebase.auth().sendPasswordResetEmail(data.email)
+              .then(function() {
+                reset_alert.present();
+              })
+              .catch(function(error) {
+                failure_alert.present();
+              });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   closeModal() {

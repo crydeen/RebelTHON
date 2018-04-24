@@ -170,6 +170,110 @@ export class AccountSettingsPage {
     this.emailComposer.open(email);
   }
 
+  updatePassword() {
+    let authenticate_failure_alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: "Email/Password incorrect!",
+      buttons: [{
+        text:'OK',
+        handler: () => {
+
+        }
+    }]
+    });
+    let success_update_alert = this.alertCtrl.create({
+      title: 'Success',
+      subTitle: "Your Password has been changed!",
+      buttons: [{
+        text:'OK',
+        handler: () => {
+
+        }
+    }]
+    });
+    let failure_update_alert = this.alertCtrl.create({
+      title: 'Failure',
+      subTitle: "Oops, something went wrong. Your Password has not been changed!",
+      buttons: [{
+        text:'OK',
+        handler: () => {
+
+        }
+    }]
+    });
+    let update_prompt = this.alertCtrl.create({
+      title: 'New Password',
+      message: "Enter the new password you would like to have",
+      inputs: [
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Change',
+          handler: data => {
+            console.log('Made it to Password Change');
+            this.user.updatePassword(data.password).then(function() {
+              success_update_alert.present();
+            }).catch(function(error) {
+              failure_update_alert.present();
+            });
+          }
+        }
+      ]
+    });
+    let prompt = this.alertCtrl.create({
+      title: 'Update Password',
+      message: "Please re-enter your email address and password",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Sign in',
+          handler: data => {
+            console.log(data.email);
+            let credentials = firebase.auth.EmailAuthProvider.credential(
+              data.email,
+              data.password
+            );
+            this.user.reauthenticateWithCredential(credentials).then(function() {
+              console.log("Authenticated");
+              update_prompt.present();
+            }).catch(function(error) {
+              console.log("Error - not authenticated");
+              authenticate_failure_alert.present();
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   closeModal() {
     this.navCtrl.pop();
   }
