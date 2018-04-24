@@ -58,9 +58,9 @@
       Fundraising Summary
     </ion-list-header>
 
-    <div #frame style="width:100%;overflow:scroll !important;-webkit-overflow-scrolling:touch !important">
+    <div #frame style="width:100%;overflow:scroll !important;-webkit-overflow-scrolling:touch !important" *ngFor="let detail of profile | async">
       <!-- <iframe src="https://events.dancemarathon.com/index.cfm?fuseaction=donorDrive.participant&participantID=324978" sandbox="allow-forms allow-scripts" class="iframe" scrolling="yes" ></iframe> -->
-      <img class="img-center" [src]="imageUrl" (load)="markAsLoaded()" ng-if="imageLoaded">
+      <img class="img-center" src="https://bfapps1.boundlessfundraising.com/badge/cmndm/display/{{ detail.userId }}/1606" (load)="markAsLoaded()" ng-if="imageLoaded">
       <!-- <img-loader *ngIf="imageUrl" useImg src="{{imageUrl}}" ></img-loader> -->
 
     </div>
