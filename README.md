@@ -11,8 +11,8 @@ Follow instructions at https://ionicframework.com/getting-started to install Nod
 
 Git Clone this repository
 
-  npm install
+      npm install
 
-  ionic lab
+      ionic lab
 
 This will start a test server running at http://localhost:8100
