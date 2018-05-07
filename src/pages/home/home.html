@@ -12,19 +12,22 @@
 </ion-header>
 
 <ion-content class="outer-content">
+      <!-- Create the card for Upcoming events -->
       <ion-card>
         <ion-card-header>
           Upcoming Events
         </ion-card-header>
+
         <ion-card-content>
           <ion-list class="lines">
+            <!-- Angular Directive For Loop to display the events in the database -->
             <div *ngFor="let event of events | async">
-          <ion-item class="no-padding" detail-push (click)="openModal({eventParam: event})" *ngIf="event.startDate >= date">
-          <ion-thumbnail item-start>
-            <!-- <img src="img/thumbnail-totoro.png"> -->
-            <p padding-vertical>{{ event.startDate | date:'MMM d' }}<br>{{ event.startDate | date:'shortTime':'UTC' }}</p>
-
-          </ion-thumbnail>
+            <!-- Angular Directive If Statement to only display the ones that come after the current date and time -->
+            <ion-item class="no-padding" detail-push (click)="openModal({eventParam: event})" *ngIf="event.startDate >= date">
+            <ion-thumbnail item-start>
+              <!-- Just show the startDate in the thumbnail to the left of the event -->
+              <p padding-vertical>{{ event.startDate | date:'MMM d' }}<br>{{ event.startDate | date:'shortTime':'UTC' }}</p>
+            </ion-thumbnail>
           <!-- <img [src]="post.data.url" /> -->
           <h3>{{ event.title }}</h3>
           <p>{{ event.location }}</p>
@@ -35,6 +38,7 @@
       </ion-card>
 
       <ion-card>
+        <!-- Same as the card above but just filtered for past events in the ngIf statement -->
         <ion-card-header>
           Past Events
         </ion-card-header>

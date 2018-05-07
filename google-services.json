@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "197021943634",
+    "firebase_url": "https://rebelthon-app.firebaseio.com",
+    "project_id": "rebelthon-app",
+    "storage_bucket": "rebelthon-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197021943634:android:2ba3263478191083",
+        "android_client_info": {
+          "package_name": "com.test.rebelthon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197021943634-loug6tj0u9nmeudm4s4qk2jnegh9uhhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0uZsck7AA6kOJY32Q5GCWNmzjFC-Nd9A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

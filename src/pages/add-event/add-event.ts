@@ -26,10 +26,14 @@ export class AddEventPage {
   timezone: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // Set initial times
     this.incrementDate = new Date();
     this.timezone = new Date();
+    // Correct for 5 hour difference since Central Time
     this.timezone.setHours(this.timezone.getHours()-5);
+    // Error checking to keep the endDate always after the startDate
     this.incrementDate.setHours(this.timezone.getHours()+1);
+    // ISO String is the standard used for Ionic DateTime picker. Reference: https://ionicframework.com/docs/api/components/datetime/DateTime/
     this.startDate = this.timezone.toISOString();
     console.log(this.timezone);
     this.endDate= this.incrementDate.toISOString();
@@ -45,9 +49,12 @@ export class AddEventPage {
     this.navCtrl.pop();
   }
 
+  // Add Event to the database, adding the event then taking a snapshot in order to pull the key out and store it in the database in order to
+  // reference the correct place in the JSON object
   addEvent() {
     console.log(this.notes)
     if(this.notes === undefined) {
+      // Notes can be left blank but firebase database doesn't allow storing of empty strings, so "None" is placed in there.
       this.notes = "None";
       firebase.database().ref('/events/').push({
         title: this.title,
@@ -94,6 +101,7 @@ export class AddEventPage {
   }
 
   updateEndDate() {
+    // method called on change so that the endDate isn't ever allowed to come before startDate
     // this.endDate = this.startDate;
     this.testDate = new Date(this.startDate);
     this.testDate.setHours(this.testDate.getHours()+1);
@@ -103,6 +111,7 @@ export class AddEventPage {
   }
 
   updateStartDate() {
+    // method called on change so when the endDate is changed, the startDate won't ever be after the endDate
     if(this.startDate > this.endDate) {
       this.testDate = new Date(this.endDate);
       this.testDate.setHours(this.testDate.getHours()-1);

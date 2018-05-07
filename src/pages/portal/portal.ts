@@ -6,6 +6,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
+import { AccountSettingsPage } from '../account-settings/account-settings';
 import { Storage } from '@ionic/storage';
 
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -39,29 +40,17 @@ export class PortalPage {
     this.date = Date.now();
     console.log(this.date);
     console.log(this.user);
+    // If the user is logged in, then pull their profile
     if (this.user) {
       console.log(this.user.uid);
       this.isLoggedIn = true;
-      // firebase.database().ref("/users/" + this.user.uid).on("child_added", function(snapshot) {
-      //   if(snapshot.key == "dancer_id") {
-      //     this.dancer_id=snapshot.val();
-      //   }
-      //   else if(snapshot.key == "name") {
-      //     this.name=snapshot.val();
-      //   }
-      //   else if(snapshot.key == "team") {
-      //     this.team=snapshot.val();
-      //   }
-      //   });
       this.profile = angfire.list('users/' + this.user.uid).valueChanges();
       this.imageUrl = "https://bfapps1.boundlessfundraising.com/badge/cmndm/display/" + window.localStorage.getItem(this.user.uid) + "/1606";
       console.log(this.imageUrl);
-      // this.size = new Subject<string>();
-      // this.queryObservable = size.switchMap(size =>
-      //   db.list('/users', ref => ref.orderByChild('key').equalTo(this.user.uid)).valueChanges()
-      // );
     }
+    // Otherwise set isLoggedIn to false so the login prompt is shown
     else {
+
       this.isLoggedIn = false;
     }
     this.imageLoaded = false;
@@ -73,17 +62,8 @@ export class PortalPage {
     this.imageLoaded = true;
   }
 
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      location.reload();
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-
   copy(link) {
+    // Copy link to clipboard using ionic plugin and display a toast showing its been copied
     let toast = this.toastCtrl.create({
       message: 'Link Copied to Clipboard!',
       duration: 2000,
@@ -100,6 +80,7 @@ export class PortalPage {
   }
 
   openWeb(link) {
+    // Target the user's system browser and open the link there
     let target = "_system";
     const browser = this.iab.create(link, target);
 
@@ -107,10 +88,15 @@ export class PortalPage {
   }
 
   login() {
+    // Push a modal of the login page
     let modal = this.modalCtrl.create(LoginPage);
     modal.present();
   }
 
-
+  accountSettings(account) {
+    // Push a modal of the account settings page, passing the account information as a parameter
+    let modal = this.modalCtrl.create(AccountSettingsPage, {account:account});
+    modal.present();
+  }
 
 }

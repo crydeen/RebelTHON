@@ -23,6 +23,7 @@ export class LogoutPage {
   }
 
   yes() {
+    // Log the user out and alert them as such and set the root page back to the home page
     let logout_alert = this.alertCtrl.create({
       title: 'Success',
       subTitle: "You have been logged out!",
@@ -38,8 +39,10 @@ export class LogoutPage {
     }, function(error) {
       console.error('Sign Out Error', error);
     });
+
   }
   no() {
+    // If they say no, pop the page off back to the Settings Page 
     this.navCtrl.pop();
   }
 

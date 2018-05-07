@@ -88,6 +88,7 @@ export class RegisterPage {
   }
 
   help () {
+    // Help Alert
     let alert = this.alertCtrl.create({
       title: 'Help',
       subTitle: "Your Team is what you signed up for when you signed up for the Dance Marathon!<br><br> Your Dancer ID can be found on your Donor Drive Page if you go here and log in!<br><br>And don't worry you can change these later if you want to leave them blank now!",
@@ -97,17 +98,47 @@ export class RegisterPage {
   }
 
   register() {
+    // Create a user account using firebase auth and then store account info, with logic checks to see which fields are left blank in order to handle them in the firebase database correctly
     this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         console.log(user.email)
         this.user = firebase.auth().currentUser;
+        if(this.name == undefined && this.team == undefined && this.dancer_id == undefined) {
+          this.name = "None";
+          this.team = "None";
+          this.dancer_id = "None";
+        }
+        else if(this.name == undefined && this.team == undefined && this.dancer_id != undefined) {
+          this.name = "None";
+          this.team = "None";
+        }
+        else if(this.name == undefined && this.team != undefined && this.dancer_id == undefined) {
+          this.name = "None";
+          this.dancer_id = "None";
+        }
+        else if(this.name != undefined && this.team == undefined && this.dancer_id == undefined) {
+          this.team = "None";
+          this.dancer_id = "None";
+        }
+        else if(this.name != undefined && this.team != undefined && this.dancer_id == undefined) {
+          this.dancer_id = "None";
+        }
+        else if(this.name != undefined && this.team == undefined && this.dancer_id != undefined) {
+          this.team = "None";
+        }
+        else if(this.name == undefined && this.team != undefined && this.dancer_id != undefined) {
+          this.name = "None";
+        }
+        else {
+          console.log("Error")
+        }
+        // After the logic check has complete, the information is pushed to the database using the user's uid as the path
         firebase.database().ref('/users/' + this.user.uid + "/userDetails").set({
           name: this.name,
           team: this.team,
           userId: this.dancer_id,
           isAdmin: false
         })
-        window.localStorage.setItem(this.user.uid, this.dancer_id);
         let creation_alert = this.alertCtrl.create({
           title: 'Success',
           subTitle: "Your account has been successfully created!",

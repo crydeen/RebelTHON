@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <!-- Logo Image -->
     <ion-title><img src="assets/imgs/rebelthon_logo_white.png" /></ion-title>
+    <!-- Button Bar to Close Modal -->
     <ion-buttons start>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon item-right name="ios-close-outline"></ion-icon>
@@ -21,15 +23,22 @@
 <ion-content class="outer-content">
 
   <ion-list>
+
     <ion-item>
+      <!-- Input tag for title -->
       <ion-input placeholder="Title" [(ngModel)]="title" required></ion-input>
     </ion-item>
+
     <ion-item>
+      <!-- Input tag for location -->
       <ion-input placeholder="Location" [(ngModel)]="location" required></ion-input>
     </ion-item>
+
   </ion-list>
 
   <ion-list>
+
+    <!-- Setting start date and end date, split out into time and date but manipulating just one startDate and one endDate. Reference: https://ionicframework.com/docs/components/#datetime -->
 
     <ion-item>
       <ion-label>Start Date</ion-label>

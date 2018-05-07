@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <!-- Logo Image -->
     <ion-title><img src="assets/imgs/rebelthon_logo_white.png" /></ion-title>
+    <!-- Button to close modal page -->
     <ion-buttons start>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon item-right name="ios-close-outline"></ion-icon>
@@ -19,6 +21,7 @@
 
 
 <ion-content class="outer-content">
+  <!-- Ion List for displaying current user's  account profile -->
   <ion-list no-border>
 
     <ion-list-header>
@@ -26,6 +29,7 @@
     </ion-list-header>
 
     <ion-item>
+      <!-- Uses angular directives to display the information that is stored in the .ts file -->
       <ion-icon name="person" item-start></ion-icon>
         {{ name }}
       <button ion-button item-end (click)="changeName()">
@@ -34,6 +38,7 @@
     </ion-item>
 
     <ion-item>
+      <!-- Uses angular directives to display the information that is stored in the .ts file -->
       <ion-icon name="people" item-start></ion-icon>
         {{ team }}
       <button ion-button item-end (click)="changeTeam()">
@@ -42,6 +47,7 @@
     </ion-item>
 
     <ion-item>
+      <!-- Uses angular directives to display the information that is stored in the .ts file -->
       <ion-icon name="finger-print" item-start></ion-icon>
         {{ userId }}
       <button ion-button item-end (click)="changeUserId()">
@@ -54,13 +60,16 @@
         {{ email }}
     </ion-item>
     <ion-item>
+      <!-- Creates alert for user to update their password -->
       <button ion-button block (click)="updatePassword()" >Change your Password</button>
     </ion-item>
   </ion-list>
 
   <div padding-horizontal>
+    <!-- Saves the changes that have been made above and sets the correct values in the database -->
     <button ion-button round (click)="save()" class="center">Save Changes</button>
     <br><br>
+    <!-- Shows the request Admin button if they aren't already an admin -->
     <button ion-button block (click)="requestAdmin()" *ngIf="isAdmin==false">Request to be an Admin</button>
     <h3 class="center" *ngIf="isAdmin==true">You are already an Admin!</h3>
   </div>

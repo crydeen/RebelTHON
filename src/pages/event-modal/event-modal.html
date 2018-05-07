@@ -6,9 +6,11 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
+    <!-- Logo Image -->
     <ion-title>
       <img src="assets/imgs/rebelthon_logo_white.png" />
     </ion-title>
+    <!-- Button bar to hold button to close modal -->
     <ion-buttons start>
       <button ion-button icon-only (click)="dismiss()">
         <ion-icon item-right name="ios-close-outline"></ion-icon>
@@ -18,6 +20,8 @@
 </ion-header>
 
 <ion-content>
+
+      <!-- Uses Angular Directives to display the information in the .ts file from the event object passed to the page -->
 
       <ion-item>
         <h2>{{event.title}}</h2>
@@ -32,9 +36,12 @@
       </ion-item>
   <br>
   <div padding-horizontal>
+    <!-- Checks if the event is already in the user's calendar and then displays the appropriate message -->
     <p class="center" *ngIf="status">This Event is Already in Your Calendar!</p>
     <button *ngIf="!status" ion-button block (click)="addToCalendar()">Add to Calendar</button>
   </div>
+
+  <!-- If the user is an admin, the additional fields are shown to edit or delete the event -->
   <div *ngIf="admin">
   <br>
   <br>

@@ -13,6 +13,9 @@
 </ion-header>
 
 <ion-content class="outer-content">
+
+  <!-- Dummy list of settings -->
+
   <ion-list>
     <ion-item>
       <ion-label>Push Notifications</ion-label>
@@ -28,14 +31,17 @@
 </ion-item>
 </ion-list>
 <div padding-horizontal>
+  <!-- Link to the About Page -->
   <button ion-button block (click)="about()">About Us</button>
   <br><br>
   </div>
+  <!-- Pull the information for the user if they are logged in -->
   <div padding-horizontal *ngFor="let detail of profile | async">
     <ion-list no-lines *ngIf="isLoggedIn == true">
       <ion-list-header class="center">
         My Account
       </ion-list-header>
+        <!-- Pass in the account information to the account settings page in order to update their account information -->
         <button ion-button block (click)="accountSettings(detail)" color="primary">Account Settings</button>
         <br>
         <button ion-button block (click)="logout()" color="danger">Logout</button>

@@ -1,3 +1,5 @@
+// File to import all the modules used for the entire app, reference here https://ionicframework.com/docs/intro/tutorial/project-structure/
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +15,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FCM } from '@ionic-native/fcm';
 import { IonicStorageModule } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -94,6 +97,7 @@ export const firebaseConfig = {
     Clipboard,
     InAppBrowser,
     LocalNotifications,
+    FCM,
     EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

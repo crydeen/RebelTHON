@@ -23,10 +23,13 @@ export class SettingsPage {
   account: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public alertCtrl: AlertController, public modalCtrl: ModalController, public angfire: AngularFireDatabase) {
+    // Pull the currentUser and set it as the user object
     this.user = firebase.auth().currentUser;
+    // Checks to see if the user is logged in
     if (this.user) {
       console.log(this.user.uid);
       this.isLoggedIn = true;
+      // Creates the firebase list observable for the user's details
       this.profile = angfire.list('users/' + this.user.uid).valueChanges();
     }
     else {
@@ -35,16 +38,19 @@ export class SettingsPage {
   }
 
   accountSettings(account) {
+    // Create a modal for account settings and pass the profile information in
     let modal = this.modalCtrl.create(AccountSettingsPage, {account:account});
     modal.present();
   }
 
   logout() {
+    // Push the logout page
     let modal = this.modalCtrl.create(LogoutPage);
     modal.present();
 
   }
   about() {
+    // Push the about page
     let modal = this.modalCtrl.create(AboutPage);
     modal.present();
   }

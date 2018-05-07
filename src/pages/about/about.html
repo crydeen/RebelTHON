@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <!-- Image for RebelTHON Header -->
     <ion-title><img src="assets/imgs/rebelthon_logo_white.png" /></ion-title>
+    <!-- Button for closing modal at the top of page -->
     <ion-buttons start>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon item-right name="ios-close-outline"></ion-icon>
@@ -17,8 +19,9 @@
 
 </ion-header>
 
-
+<!-- Class Outer Content puts gray in the background, creates a nice contrast in app -->
 <ion-content class="outer-content">
+  <!--Ion Card for Showing the About Us Description -->
   <ion-card>
     <ion-card-header class="center">
       About Us
@@ -26,6 +29,17 @@
     <ion-card-content>
       This app was created by Chase Rydeen using Ionic and it is maintained
       by the current RebelTHON Director of Technology.
+    </ion-card-content>
+  </ion-card>
+  <!-- Ion Card for showing the privacy policy -->
+  <ion-card>
+    <ion-card-header class="center">
+      Privacy Policy
+    </ion-card-header>
+    <ion-card-content class="center">
+      Click below to view our Privacy Policy
+      <!-- Link to the privacy policy on the RebelTHON website -->
+      <button ion-button block (click)="privacyPolicy()" color="primary">Privacy Policy</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

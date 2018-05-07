@@ -14,7 +14,7 @@ import * as firebase from 'firebase/app';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+// All the CSS styling for the fly-in for the login page
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -81,6 +81,7 @@ export class LoginPage {
   isLoggedIn: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    // Check whether the user is logged in or not
     this.user = firebase.auth().currentUser;
     if (this.user) {
       console.log(this.user.uid);
@@ -92,6 +93,7 @@ export class LoginPage {
   }
 
   login() {
+    // Use the firebase auth method signInWithEmailAndPassword to log the user in
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         console.log(user.email);
@@ -107,6 +109,7 @@ export class LoginPage {
         });
         login_alert.present();
       })
+      // catch login error and display a message
       .catch((error) => {
         console.log(error)
         let failure_alert = this.alertCtrl.create({
@@ -124,11 +127,13 @@ export class LoginPage {
   }
 
   register() {
+    // Push the register page
     let modal = this.modalCtrl.create(RegisterPage);
     modal.present();
   }
 
   forgot() {
+    // Create alerts to handle success and failure to reset
     let reset_alert = this.alertCtrl.create({
       title: 'Success',
       subTitle: "Your password reset has been sent to your email",
@@ -169,6 +174,7 @@ export class LoginPage {
           text: 'Send Reset',
           handler: data => {
             console.log(data.email);
+            // Use the user's email to send a password reset email
             firebase.auth().sendPasswordResetEmail(data.email)
               .then(function() {
                 reset_alert.present();
@@ -184,7 +190,7 @@ export class LoginPage {
   }
 
   closeModal() {
-        this.navCtrl.pop();
+    this.navCtrl.pop();
   }
 
 }

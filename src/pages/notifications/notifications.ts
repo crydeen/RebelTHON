@@ -11,6 +11,8 @@ export class NotificationsPage {
   constructor(public navCtrl: NavController, private localNotifications: LocalNotifications) {
 
   }
+
+  // schedule() creates an example notification to show the local notification functionality
   schedule() {
     this.localNotifications.schedule({
     id: 1,

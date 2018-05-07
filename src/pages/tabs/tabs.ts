@@ -10,6 +10,8 @@ import { SettingsPage } from '../settings/settings'
 })
 export class TabsPage {
 
+  //Declare roots to all the correct pages
+
   tab1Root = HomePage;
   tab2Root = NotificationsPage;
   tab3Root = PortalPage;

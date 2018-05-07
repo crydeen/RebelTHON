@@ -28,26 +28,13 @@ export class EventModalPage {
   endDate: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private calendar: Calendar, public alertCtrl: AlertController, public modalCtrl: ModalController) {
+    // Using navParams, the event object is retrieved from the previous page in order to see what event to display
     this.event = this.navParams.get('eventParam').eventParam;
     console.log(this.event);
     this.admin = this.navParams.get('admin');
     console.log(this.admin);
-    // console.log(this.event.startDate);
-    // this.dateTest = new Date(this.event.startDate);
-    // console.log(this.dateTest);
-    // this.utcTest = Date.UTC(this.dateTest.getFullYear(),this.dateTest.getMonth(),this.dateTest.getDay(),this.dateTest.getHours(),this.dateTest.getMinutes(),this.dateTest.getSeconds(),this.dateTest.getMilliseconds());
-    // this.localString = this.dateTest.toString();
-    // console.log(this.localString);
-    // this.utcTest2 = Date.UTC(this.dateTest.getFullYear(),this.dateTest.getMonth(),this.dateTest.getDay(),23,this.dateTest.getMinutes(),this.dateTest.getSeconds(),this.dateTest.getMilliseconds());
-    // console.log(this.dateTest.getFullYear() this.dateTest.getMonth());
     this.status = this.checkCalendar();
-    // this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate))
-    // .then((result) => {
-    //   if(result) {
-    //     this.status = result;
-    //   }
-    //   console.log(result);
-    // });
+    // Create the alert to show the user when the event has been added to their calendar
     this.creationAlert = this.alertCtrl.create({
     title: 'Event Added!',
     subTitle: 'The event has been added to your calendar!',
@@ -65,6 +52,7 @@ export class EventModalPage {
   }
 
   addToCalendar() {
+    // Creates the date objects to add the event to the user's calendar, correcting by 5 hours since we are in central time
     this.startDate = new Date(this.event.startDate);
     this.startDate.setHours(this.startDate.getHours()+5);
     this.endDate = new Date(this.event.endDate);
@@ -75,6 +63,7 @@ export class EventModalPage {
     }, function(err) {
       console.log(err)
     });
+    // Run findEvent afterwards to make sure the event made it in the calendar
     this.calendar.findEvent(this.event.title , this.event.location, this.event.notes, this.startDate, this.endDate)
     .then((result) => {
       if(result) {
@@ -88,6 +77,7 @@ export class EventModalPage {
   }
 
   public checkCalendar() {
+    // Check the user's calendar on entry to the page to see if the event is present in order to display the correct message at the bottom of the page
     this.startDate = new Date(this.event.startDate);
     this.startDate.setHours(this.startDate.getHours()+5);
     this.endDate = new Date(this.event.endDate);
@@ -108,12 +98,14 @@ export class EventModalPage {
   }
 
   updateEvent(event) {
+    // Create a modal page and pass in the event as a parameter to the editEventPage to make changes to the event
     console.log(event)
     let modal = this.modalCtrl.create(EditEventPage, {event:event});
     modal.present();
   }
 
   deleteEvent(key) {
+    // This method takes the key of the event as a parameter and then uses it to locate the item in the database and delete it
     this.confirmDelete = this.alertCtrl.create({
       title: 'Confirm Deletion',
       subTitle: 'Are you sure you would like to delete this event?',

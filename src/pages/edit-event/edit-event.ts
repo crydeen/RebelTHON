@@ -26,6 +26,7 @@ export class EditEventPage {
   event: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // Exact same set up as addEventPage, reference that for variable purposes
     this.event = this.navParams.get('event');
     console.log(this.event);
     this.title = this.event.title;

@@ -6,6 +6,8 @@
   </ion-navbar>
 </ion-header>
 
+<!-- Using the isLoggedIn variable, a message is either displayed along with a login button, or their donor drive portal is displayed -->
+
 <ion-content padding class="outer-content" *ngIf="isLoggedIn == false">
   <h3 class="center">It seems you aren't logged in!<br><br>
   Click on the button below to login so we can show you your dancer portal!</h3>
@@ -13,6 +15,7 @@
 </ion-content>
 
 <ion-content class="outer-content" *ngIf="isLoggedIn == true">
+  <!-- Angular For Loop to display the information stored in the userDetails object underneath the user's uid path -->
   <ion-list no-border *ngFor="let detail of profile | async">
 
     <ion-list-header>
@@ -48,6 +51,7 @@
     </ion-item>
 
     <div padding-horizontal>
+      <!-- Buttons for copying links to the user's clipboard and also opening the link in the user's native web browser -->
       <button ion-button block (click)="copy(link)"><ion-icon name="copy"></ion-icon>&nbsp;&nbsp;Copy Donor Drive Link</button>
       <button ion-button block (click)="openWeb(link)"><ion-icon name="open"></ion-icon>&nbsp;&nbsp;Open Drive on the Web</button>
     </div>
@@ -59,9 +63,17 @@
     </ion-list-header>
 
     <div #frame style="width:100%;overflow:scroll !important;-webkit-overflow-scrolling:touch !important" *ngFor="let detail of profile | async">
-      <!-- <iframe src="https://events.dancemarathon.com/index.cfm?fuseaction=donorDrive.participant&participantID=324978" sandbox="allow-forms allow-scripts" class="iframe" scrolling="yes" ></iframe> -->
-      <img class="img-center" src="https://bfapps1.boundlessfundraising.com/badge/cmndm/display/{{ detail.userId }}/1606" (load)="markAsLoaded()" ng-if="imageLoaded">
-      <!-- <img-loader *ngIf="imageUrl" useImg src="{{imageUrl}}" ></img-loader> -->
+
+      <!-- Display this card only if the user has put in their Dancer ID, otherwise put a link to account settings -->
+      <ion-card *ngIf="detail.userId == 'None'">
+        <ion-card-content>
+          <h3>It seems you haven't added your Dancer ID, click on the button below to go to your account settings and add it to your account!</h3>
+          <button ion-button block (click)="accountSettings(detail)" color="primary">Account Settings</button>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Uses HTML template to pull the dancerId of the person to display the donor drive graphic -->
+      <img class="img-center" src="https://bfapps1.boundlessfundraising.com/badge/cmndm/display/{{ detail.userId }}/1606" *ngIf="detail.userId != 'None'">
 
     </div>
   </ion-list>

@@ -21,18 +21,23 @@ export class HomePage {
   // admin: any;
 
   constructor(public navCtrl: NavController, public angfire: AngularFireDatabase, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-    // this.events = angfire.list('events').valueChanges();
-    this.events = this.angfire.list('/events', ref => ref.orderByChild('startDate').limitToLast(15)).valueChanges();
-    this.date = new Date().toISOString();
+    // Event List pulled from the database, limiting to the most recent 25 events in order to not inundate the user with events
+    this.events = this.angfire.list('/events', ref => ref.orderByChild('startDate').limitToLast(25)).valueChanges();
+    // correct for being in central time zone
+    this.date = new Date()
+    this.date.setHours(this.date.getHours()-5);
+    this.date = this.date.toISOString();
+    console.log(this.date)
     // let admin = null;
   }
 
   openModal(eventParam) {
-    // let modal = this.modalCtrl.create(EventModalPage, eventParam);
+    // create a local version of the modal controller in order to call it within the function within the firebase snapshot
     let local_modal = this.modalCtrl;
     this.user = firebase.auth().currentUser;
     var admin;
     if (this.user) {
+      // Check if there is an active user and if the user is an admin to pass the correct parameter to the event modal page
       var ref = firebase.database().ref("users/"+this.user.uid);
       ref.once("value")
         .then(function(snapshot) {
@@ -67,6 +72,7 @@ export class HomePage {
   }
 
   addEvent() {
+    // Create an add event page but only add it if the user is an admin
     let modal = this.modalCtrl.create(AddEventPage);
     let admin_alert = this.alertCtrl.create({
       title: 'Admin',

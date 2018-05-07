@@ -30,8 +30,10 @@ export class AccountSettingsPage {
   email: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFireDatabase, public alertCtrl: AlertController, private emailComposer: EmailComposer) {
+    // When this page is called, a user's account object is passed to this page
     this.account = this.navParams.get('account');
     console.log(this.account);
+    // Pulling active user information from the firebase auth currentUser
     this.user = firebase.auth().currentUser;
     this.name = this.account.name;
     this.team = this.account.team;
@@ -41,13 +43,15 @@ export class AccountSettingsPage {
   }
 
   changeName() {
+    // create a prompt to change a user's name
     let prompt = this.alertCtrl.create({
       title: 'Change Name',
       message: "Enter your full name",
       inputs: [
         {
           name: 'name',
-          placeholder: 'Name'
+          placeholder: 'Name',
+          value: this.name
         },
       ],
       buttons: [
@@ -60,7 +64,13 @@ export class AccountSettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.name = data.name;
+            // Making sure the name field isn't empty, otherwise will mess up set() for firebase
+            if(data.name == undefined || data.name == "None") {
+              this.name = "None";
+            }
+            else {
+              this.name = data.name;
+            }
           }
         }
       ]
@@ -69,13 +79,15 @@ export class AccountSettingsPage {
   }
 
   changeTeam() {
+    // Create prompt to change team name
     let prompt = this.alertCtrl.create({
       title: 'Change Team',
       message: "Enter the Team that you are on",
       inputs: [
         {
           name: 'team',
-          placeholder: 'Team Name'
+          placeholder: 'Team Name',
+          value: this.team
         },
       ],
       buttons: [
@@ -88,7 +100,13 @@ export class AccountSettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.team = data.team;
+            // Handle Empty String
+            if(data.team == undefined || data.team == "None") {
+              this.team = "None";
+            }
+            else {
+              this.team = data.team;
+            }
           }
         }
       ]
@@ -97,13 +115,15 @@ export class AccountSettingsPage {
   }
 
   changeUserId() {
+    // Create prompt to update Dancer ID
     let prompt = this.alertCtrl.create({
       title: 'Change Dancer ID',
       message: "Enter your Dancer ID from the Donor Drive Website",
       inputs: [
         {
           name: 'userId',
-          placeholder: 'Dancer ID'
+          placeholder: 'Dancer ID',
+          value: this.userId
         },
       ],
       buttons: [
@@ -116,7 +136,13 @@ export class AccountSettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.userId = data.userId;
+            // Handle empty string
+            if(data.userId == undefined || data.userId == "None") {
+              this.userId = "None";
+            }
+            else {
+              this.userId = data.userId;
+            }
           }
         }
       ]
@@ -125,13 +151,14 @@ export class AccountSettingsPage {
   }
 
   save() {
+    // Once the user clicks save, update the information in the firebase using .set()
     firebase.database().ref('/users/' + this.user.uid + "/userDetails").set({
       name: this.name,
       team: this.team,
       userId: this.userId,
       isAdmin: this.isAdmin
     })
-    window.localStorage.setItem(this.user.uid, this.userId);
+    // Produce alert letting them know of the successful creation
     let save_alert = this.alertCtrl.create({
       title: 'Success',
       subTitle: "Your changes have been successfully saved!",
@@ -146,6 +173,7 @@ export class AccountSettingsPage {
   }
 
   requestAdmin() {
+    // Call Email Composer to compose email if the user would like to become an admin
     this.emailComposer.isAvailable().then((available: boolean) =>{
       if(available) {
         // let admin_alert = this.alertCtrl.create({
@@ -171,6 +199,7 @@ export class AccountSettingsPage {
   }
 
   updatePassword() {
+    // create authenticate failure alert
     let authenticate_failure_alert = this.alertCtrl.create({
       title: 'Error',
       subTitle: "Email/Password incorrect!",
@@ -181,6 +210,7 @@ export class AccountSettingsPage {
         }
     }]
     });
+    // create success update alert
     let success_update_alert = this.alertCtrl.create({
       title: 'Success',
       subTitle: "Your Password has been changed!",
@@ -191,6 +221,7 @@ export class AccountSettingsPage {
         }
     }]
     });
+    // create failure update alert
     let failure_update_alert = this.alertCtrl.create({
       title: 'Failure',
       subTitle: "Oops, something went wrong. Your Password has not been changed!",
@@ -201,6 +232,7 @@ export class AccountSettingsPage {
         }
     }]
     });
+    // Create the prompt for the new password they would like
     let update_prompt = this.alertCtrl.create({
       title: 'New Password',
       message: "Enter the new password you would like to have",
@@ -221,6 +253,7 @@ export class AccountSettingsPage {
         {
           text: 'Change',
           handler: data => {
+            // Called the update password method to change it
             console.log('Made it to Password Change');
             this.user.updatePassword(data.password).then(function() {
               success_update_alert.present();
@@ -231,6 +264,7 @@ export class AccountSettingsPage {
         }
       ]
     });
+    // Create the prompt requiring them to re-authenticate their account so they can update their password
     let prompt = this.alertCtrl.create({
       title: 'Update Password',
       message: "Please re-enter your email address and password",
@@ -260,6 +294,7 @@ export class AccountSettingsPage {
               data.email,
               data.password
             );
+            // Re authenticate the user
             this.user.reauthenticateWithCredential(credentials).then(function() {
               console.log("Authenticated");
               update_prompt.present();
@@ -275,6 +310,7 @@ export class AccountSettingsPage {
   }
 
   closeModal() {
+    // Close the page
     this.navCtrl.pop();
   }
 
